@@ -5,23 +5,132 @@
     <title>Enigma Twitterwall</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="Tweetie/tweetie.js"></script>
+
+    <style media="screen">
+      body {
+        background-color: #D7212D;
+        margin: 0;
+        color: #8e8e8e;
+        font: 12px/20px "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+      }
+
+      #header {
+        background-color: #E7F0F0;
+        height: 150px;
+        width: 100%;
+      }
+      /*color #323232*/
+
+      #logo {
+        float: left;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        margin-left: 30px;
+      }
+
+      #schild {
+        height: 140px;
+        float: right;
+        margin-right: 15px;
+      }
+
+      ul {
+          list-style: none;
+          margin: 0;
+          padding: 0;
+      }
+
+      a {
+          color: #76949F;
+          text-decoration: none;
+      }
+
+      a:hover {
+          text-decoration: underline;
+      }
+
+      .tweet {
+          width: 350px;
+          margin: 0 auto;
+          border: 1px solid #e0e0e0;
+          background: white;
+          display: block;
+          white-space: pre;
+          -webkit-border-radius: 3px;
+             -moz-border-radius: 3px;
+                  border-radius: 3px;
+      }
+
+      .tweet {
+          width: 450px;
+      }
+
+      .example2 {
+          width: 600px;
+          padding: 15px;
+          margin: 50px auto;
+          background: white;
+          -webkit-border-radius: 3px;
+             -moz-border-radius: 3px;
+                  border-radius: 3px;
+      }
+
+      .example2 .tweet {
+          overflow: hidden;
+      }
+
+      .example2 ul {
+          width: 500px;
+          height: 500px;
+          overflow: hidden;
+      }
+
+      .example2 ul li {
+          width: 500px;
+          height: 100px;
+          float: left;
+          border-bottom: 1px solid #eee;
+          padding: 0 10px 0 0;
+          margin: 0 10px 0 0;
+      }
+
+      .tweetmsg {
+        margin-left: 30px;
+      }
+
+      .tweetmsg p {
+        width: 400px;
+        text-align: left;
+        float: left;
+        white-space: normal;
+      }
+
+    </style>
+
   </head>
   <body>
-    <div class="tweet">
+    <div id="header">
+      <img id="logo" src="images/dtlogo.png" alt="">
+      <img id="schild" src="images/schild.png">
+    </div>
+    <div class="example2">
+      <div class="tweet">
+      </div>
     </div>
     <script>
-      $('.tweet').twittie({
+      $('.example2 .tweet').twittie({
         'username': 'iliket0rock',
+        'dateFormat': '%d %b. %Y',
           'count': 10,
           'hideReplies': true,
-          'template': '<strong class="date">{{date}}</strong> - {{screen_name}} {{tweet}}',
+          'template': '<div class="tweetmsg"><p><strong class="date">{{date}}</strong> - {{screen_name}} \n {{tweet}}</p></div>',
           'apiPath': 'Tweetie/api/tweet.php'
       }, function () {
             setInterval(function() {
-                var item = $('.tweet ul').find('li:first');
+                var item = $('.example2 .tweet ul').find('li:first');
 
                 item.animate( {marginLeft: '-220px', 'opacity': '0'}, 500, function() {
-                    $(this).detach().appendTo('.tweet ul').removeAttr('style');
+                    $(this).detach().appendTo('.example2 .tweet ul').removeAttr('style');
                 });
             }, 5000);
           }
